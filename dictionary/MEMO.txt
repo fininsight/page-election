@@ -1,5 +1,0 @@
-PERSON,정치인,2020-03-13 국회의원 현황 295명
-POLITICAL PARTY,정당,2020-03-13 update
-KO AREA,한국지명,2020-03-13 update
-ELECTION_DICT, 선거용어,2020-03-16 update 선거용어사전참고
-ELECTION_DISTRICT, 선거구, 2020-03-16 update
