@@ -61,12 +61,7 @@ class PreprocessNews:
             # 000 기자, 000  가자, 000기자 삭제
             text = re.sub('[ㄱ-힑]+ 기자|[ㄱ-힑]+  기자|[ㄱ-힑]+기자','',text).strip()    
             text = re.sub('[a-zA-Z0-9]{1,20}\@[a-zA-Z0-9]{1,20}\.[a-z]{1,20}.+','',text).strip()    
-            # 특수기호 삭제
-            text = re.sub('[^a-zA-Z0-9ㄱ-힗.,”“"% ]','',text).strip()
-            text = re.sub('[0-9]{1,4}.[0-9]{1,2}.[0-9]{1,2}.','',text).strip()
-            text = re.sub('무단 전재 및 재배포 금지','',text).strip()
-            text = re.sub(r'[\n\r\t]', '', str(text))
-            text = re.sub('[^ ㄱ-ㅣ가-힣 0-9 A-Z a-z]+', '', str(text))
+
             return text
     
         df['content'] = df['content'].map(lambda x : pre_fx(x))

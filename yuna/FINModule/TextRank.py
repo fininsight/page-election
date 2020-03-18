@@ -7,6 +7,9 @@ from sklearn.preprocessing import normalize
 class TextRank:
     def __init__(self, df):
         self.df = df
+        # 리스트가 저장과정에서 str로 저장되므로 형태 변환 
+        # self.df['ner_khaiii_token'] = self.df['ner_khaiii_token'].apply(lambda x: x[1:-1].replace("'",'').split(','))
+        self.tokens = self.df['ner_khaiii_token']
         sents = self.df['ner_khaiii_token']
 
         self.count_lists = self.textrank_keyword(sents, min_count=2, window=2, min_cooccurrence=2, df=0.85, max_iter=30, topk=30)
@@ -16,7 +19,7 @@ class TextRank:
     
 
     def scan_vocabulary(self, sents, min_count=2):
-        sen = [sent for sent in sents[:5]]
+        sen = [sent for sent in sents]
         counter = Counter([y for x in sen for y in x]) 
         counter = {w:c for w,c in counter.items() if c >= min_count}
         idx_to_vocab = [w for w, _ in sorted(counter.items(), key=lambda x:-x[1])]
@@ -56,8 +59,7 @@ class TextRank:
 
     def word_graph(self, sents, min_count=2, window=2, min_cooccurrence=2):
         idx_to_vocab, vocab_to_idx = scan_vocabulary(sents, min_count)
-    #     tokens = [y for x in sen for y in x]
-        g = cooccurrence(tokens, vocab_to_idx, window, min_cooccurrence) # , cooccurrence
+        g = cooccurrence(self.tokens, vocab_to_idx, window, min_cooccurrence) # , cooccurrence
         return g, idx_to_vocab
 
 

@@ -6,11 +6,11 @@ class khaiii_complexnoun:
         self.lex = []
         self.tag = []
         self.api = KhaiiiApi()
-        self.complex_nouns = []
 
     def khaiii_complex(self,filename = ''):
         df = self.df
         def khaiii(sentence):
+            complex_nouns = []
             for word in self.api.analyze(str(sentence)):
                 for m in word.morphs:
                     self.lex.append(m.lex)
@@ -18,9 +18,9 @@ class khaiii_complexnoun:
 
             for i in range(len(self.tag)-1):
                 if self.tag[i][0] == 'N' and self.tag[i+1][0] == 'N':
-                    self.complex_nouns.append(self.lex[i] + ' ' + self.lex[i+1])
+                    complex_nouns.append(self.lex[i] + ' ' + self.lex[i+1])
                 elif self.tag[i] in ['NNG', 'NNP', 'NNB', 'NR', 'NP', 'VA'] and len(self.lex[i])>1:
-                    self.complex_nouns.append(self.lex[i])
+                    complex_nouns.append(self.lex[i])
 
             return complex_nouns
 
