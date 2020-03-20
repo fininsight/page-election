@@ -62,7 +62,7 @@ class CommentSpider(scrapy.Spider):
             yield scrapy.Request(url=url
                     , callback=self.parse_page
                     , errback=self.errback_httpbin
-                    , meta={'date':re.search(date_pattern, response.url).groups()[1], 'category2':response.xpath("//div[@class='snb']/ul/li[@class='on']//a/text()").get().strip()})
+                    , meta={'date':re.search(date_pattern, response.url).groups()[1], 'category2':re.sub('[/ ]', '', response.xpath("//div[@class='snb']/ul/li[@class='on']//a/text()").get().strip())})
         
         cur_page = int(re.search(r"(page=[0-9]*)", response.url).group().split('=')[1])
         for page in response.css('div.paging a') :
