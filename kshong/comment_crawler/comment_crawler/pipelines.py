@@ -9,6 +9,7 @@ from scrapy.exporters import CsvItemExporter
 class CommentCrawlerPipeline(object):
     def open_spider(self, spider):
         self.comment_exporter = {}
+        self.name = spider.name
 
     def close_spider(self, spider):
         for exporter in self.comment_exporter.values():
@@ -22,7 +23,7 @@ class CommentCrawlerPipeline(object):
         filename = '{}_{}_{}'.format(date, category1, category2)
 
         if filename not in self.comment_exporter:
-            self.f = open('comments/{}/{}/{}/{}.csv'.format(date[:4], date[4:6], date[6:], filename), 'wb')
+            self.f = open('{}/{}/{}/{}/{}.csv'.format(self.name, date[:4], date[4:6], date[6:], filename), 'wb')
             exporter = CsvItemExporter(self.f, encoding='utf-8')
             exporter.start_exporting()
             self.comment_exporter[filename] = exporter
