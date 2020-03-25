@@ -16,7 +16,7 @@ class CollectNews:
         url = "http://211.180.114.181/newsapi/data"
         headers = {'Content-Type': 'application/json; charset=utf-8'}
         params = {
-               "token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJncm91cCI6ImZpbmluc2lnaHQiLCJuYW1lIjoiamluYmVvbSIsImV4cCI6MTYwOTQyNjc5OS4wfQ.5lFdmymJ5l-1yZWy86ohk6DoFgqS1o4pQ1oqVj19lPY",
+               "token":"eyJ0eXAiOiJKV1QiJ",
                     "pageNumber": 0,
                     "size": 1000,
                     "search":[
