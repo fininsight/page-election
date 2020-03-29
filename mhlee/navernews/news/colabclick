@@ -1,3 +1,0 @@
-function ClickConnect() {
-var buttons = document.querySelectorAll("colab-dialog.yes-no-dialog paper-button#cancel");
-buttons.forEach(function(btn) { btn.click(); }); console.log("1분마다 자동 재연결"); document.querySelector("#top-toolbar > colab-connect-button").click(); } setInterval(ClickConnect,1000*60);
