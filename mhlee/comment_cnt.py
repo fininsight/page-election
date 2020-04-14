@@ -7,7 +7,14 @@ import os
 import pandas as pd
 from pathlib import Path
 import unicodedata
-from tqdm import tqdm_notebook as tqdm
+from IPython import get_ipython
+
+if get_ipython():
+    print('jupyter envirionment')
+    from tqdm import tqdm_notebook as tqdm
+else:
+    print('command shell envirionment')
+    from tqdm import tqdm 
 
 class CollectNewsCommentReactCnt :
     @staticmethod
